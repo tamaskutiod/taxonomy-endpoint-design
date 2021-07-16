@@ -1,0 +1,34 @@
+{
+	"total": "46",
+	"items": [
+		{
+			"id": 10358,
+			"name": "Kuchen",
+			"thumbnailUrl": "https://picsum.photos/id/237/560/601",
+			"numberOfItems": 246,
+			"subItems": [
+				{
+					"id": 10357,
+					"name": "Apfelkuchen",
+					"thumbnailUrl": "https://picsum.photos/id/236/560/601",
+					"numberOfItems": 21
+				},
+				{
+					"id": 10356,
+					"name": "Blechkuchen",
+					"thumbnailUrl": "https://picsum.photos/id/235/560/601",
+					"numberOfItems": 32
+				}
+			]
+			
+		},
+		{
+			"id": 10359,
+			"name": "Torten",
+			"thumbnailUrl": "https://picsum.photos/id/238/560/601",
+			"numberOfItems": 182,
+			"subItems": null
+		}
+	] 
+}
+

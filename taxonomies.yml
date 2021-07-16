@@ -1,0 +1,112 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Category and occasion screen
+  description: RFC for the newly designed search category screen
+
+#======================================================#
+# OPEN ENDPOINTS                                       #
+#======================================================#
+paths:
+  '/taxonomies':
+    get:
+      operationId: getTaxonomies
+      summary: get a paginated list of all taxonomies (categories and occasions)
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Taxonomies'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+components:    
+  schemas:
+#======================================================#
+# RESPONSES                                            #
+#======================================================#
+    'Taxonomies':
+      type: object
+      required:
+        - total
+        - items
+      properties:
+        total:
+          type: integer
+          description: the total number of available items, used for pagination
+        items:
+          type: array
+          items: 
+            $ref: '#/components/schemas/Taxonomy'
+    'Taxonomy':
+      type: object
+      description: can be category or an occasion that's associated with one or more recipes
+      required:
+        - id
+        - name
+        - thumbnailUrl
+        - numberOfItems
+      properties:
+        id:
+          type: integer
+          minimum: 1
+        name:
+          type: string
+          example: Kuchen
+        thumbnailUrl:
+          type: string
+          format: uri
+          example: https://picsum.photos/id/238/560/601
+        numberOfItems:
+          type: integer
+          minimum: 1
+        subItems:
+          type: array
+          nullable: true
+          items: 
+            type: object
+            required:
+              - id
+              - name
+              - thumbnailUrl
+              - numberOfItems
+            properties:
+              id:
+                type: integer
+                minimum: 1
+              name:
+                type: string
+                example: Kuchen
+              thumbnailUrl:
+                type: string
+                format: uri
+                example: https://picsum.photos/id/238/560/601
+              numberOfItems:
+                type: integer
+                minimum: 1
+    'Error':
+      type: object
+      required:
+        - error
+        - message
+        - path
+        - status
+        - timestamp
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+        path:
+          type: string
+        status:
+          type: integer
+        timestamp:
+          type: string  
+
